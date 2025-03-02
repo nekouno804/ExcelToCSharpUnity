@@ -1,1 +1,3 @@
 # ExcelToCSharpUnity
+
+Excelファイルを元にC#ファイルのマスタ定義の生成、ExcelにあるマスタデータをScriptableObjectへと入れるプログラム。
