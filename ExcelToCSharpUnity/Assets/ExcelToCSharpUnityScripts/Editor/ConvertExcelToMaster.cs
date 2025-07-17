@@ -102,12 +102,12 @@ namespace ExcelToCSharpUnityScripts.Editor
                 argNames.Add(nameCell.StringCellValue);
                 // マスタのある列でEnumかどうか判別
                 var dataSetter = memberType switch {
-                    "string" => $"GetCell(data.sheet, row, {currentColumn}).StringCellValue",
+                    "string" => $"GetCellString(data.sheet, row, {currentColumn})",
                     "bool" => $"GetCell(data.sheet, row, {currentColumn}).BooleanCellValue",
                     _ => MasterDataHelper.defaultTypes.Contains(memberType)
                         ? $"({memberType})GetCell(data.sheet, row, {currentColumn}).NumericCellValue"
                         : $"({memberType})(IsPrimitive(typeof({memberType}))\n\t\t\t\t\t\t" + 
-                          $"? GetNotPrimitiveMasterData(typeof({memberType}), GetCell(data.sheet, row, {currentColumn}).StringCellValue)\n\t\t\t\t\t\t\t" +
+                          $"? GetNotPrimitiveMasterData(typeof({memberType}), GetCellString(data.sheet, row, {currentColumn}))\n\t\t\t\t\t\t\t" +
                           $": (asset.SerializeData.Count + data.startRow < row && asset.SerializeData[row - data.startRow].{nameCell} == null)\n\t\t\t\t\t\t\t" +
                           $"? default\n\t\t\t\t\t\t\t" +
                           $": asset.SerializeData[row - data.startRow].{nameCell})"};

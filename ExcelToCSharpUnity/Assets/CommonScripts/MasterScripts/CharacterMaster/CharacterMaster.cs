@@ -89,7 +89,7 @@ namespace MasterScripts {
 			for (var row = data.startRow; row <= data.lastRow; row++) {
 				var master = new MasterData(
 					(int)GetCell(data.sheet, row, 1).NumericCellValue,
-					GetCell(data.sheet, row, 2).StringCellValue,
+					GetCellString(data.sheet, row, 2),
 					(int)GetCell(data.sheet, row, 3).NumericCellValue,
 					(int)GetCell(data.sheet, row, 4).NumericCellValue,
 					(int)GetCell(data.sheet, row, 5).NumericCellValue,
@@ -97,7 +97,7 @@ namespace MasterScripts {
 					(int)GetCell(data.sheet, row, 7).NumericCellValue,
 					(float)GetCell(data.sheet, row, 8).NumericCellValue,
 					(CharacterAttribute)(IsPrimitive(typeof(CharacterAttribute))
-						? GetNotPrimitiveMasterData(typeof(CharacterAttribute), GetCell(data.sheet, row, 9).StringCellValue)
+						? GetNotPrimitiveMasterData(typeof(CharacterAttribute), GetCellString(data.sheet, row, 9))
 							: (asset.SerializeData.Count + data.startRow < row && asset.SerializeData[row - data.startRow].Attribute == null)
 							? default
 							: asset.SerializeData[row - data.startRow].Attribute)

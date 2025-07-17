@@ -154,6 +154,21 @@ namespace ExcelToCSharpUnityScripts {
             ICell cell = sheet.GetRow(rownum).GetCell(cellnum);
             return cell;
         }
+        
+        protected static string GetCellString(ISheet sheet, int rownum, int cellnum)
+        {
+            ICell cell = sheet.GetRow(rownum).GetCell(cellnum);
+            if (cell == null) return string.Empty;
+            if (cell.CellType != CellType.String) return string.Empty;
+            switch(cell.CellType) {
+                case CellType.String:
+                    return cell.StringCellValue;
+                case CellType.Boolean:
+                    return cell.BooleanCellValue.ToString();
+                default:
+                    return string.Empty;
+            }
+        }
 
         /// <summary>
         /// ScriptableObjectアセットの保存
